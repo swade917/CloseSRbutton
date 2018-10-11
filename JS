@@ -1,0 +1,27 @@
+{!REQUIRESCRIPT("/soap/ajax/32.0/connection.js")}
+
+try{
+
+    var caseToUpdate = new sforce.SObject("Case");
+
+    caseToUpdate.Id = "{!Case.Id}";
+    caseToUpdate.Status = 'Closed';
+
+    var result = sforce.connection.update([caseToUpdate]);
+
+    if(result[0].success === "true"){
+        location.reload();
+    }
+    else{
+        alert(
+            "An Error has Occurred. Error: " +
+            result[0].errors.message
+        );
+    }
+}
+catch(e){
+    alert(
+        "An unexpected Error has Occurred. Error: " + 
+        e
+    );
+}

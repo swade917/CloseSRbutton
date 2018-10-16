@@ -5,8 +5,7 @@ try{
     var caseToUpdate = new sforce.SObject("Case");
 
     caseToUpdate.Id = "{!Case.Id}";
-    caseToUpdate.Status = 'Closed';
-
+    caseToUpdate.Status = 'Auto Close [button]';
     var result = sforce.connection.update([caseToUpdate]);
 
     if(result[0].success === "true"){
